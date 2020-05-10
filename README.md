@@ -1,0 +1,2 @@
+# shopify_scripts_for_japan
+日本国内向けECで使えるShopify Scripts集
