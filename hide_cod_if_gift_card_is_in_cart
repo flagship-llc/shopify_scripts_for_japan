@@ -1,0 +1,14 @@
+# カートにギフトカードが入っていたら、決済手段「代金引換」を隠す
+
+includes_gift_card = false
+ 
+Input.cart.line_items.each do |item|
+  if item.variant.product.gift_card?
+    includes_gift_card = true
+    break
+  end
+end
+
+Output.payment_gateways = Input.payment_gateways.delete_if do |payment_gateway|
+  payment_gateway.name == "代金引換" if includes_gift_card
+end
