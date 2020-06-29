@@ -1,0 +1,12 @@
+Input.payment_gateways.each do |payment_gateway|
+  if payment_gateway.name == "Shopify Payments"
+    payment_gateway.change_name("クレジットカード決済（Visa・Master・AMEX）")
+  elsif payment_gateway.name == "クレジットカード決済（日本国内・GMOイプシロン）"
+    payment_gateway.change_name("クレジットカード決済（Diners・JCB）")
+  end
+end
+
+desired_order = ["クレジットカード決済（Visa・Master・AMEX）", "クレジットカード決済（Diners・JCB）", "Amazon Pay"]
+Output.payment_gateways = Input.payment_gateways.sort_by do |payment_gateway|
+  desired_order.index(payment_gateway.name) || Float::INFINITY
+end
