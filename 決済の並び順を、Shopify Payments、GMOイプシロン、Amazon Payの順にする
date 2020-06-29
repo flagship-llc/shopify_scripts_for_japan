@@ -1,0 +1,4 @@
+desired_order = ["Shopify Payments", "クレジットカード決済（日本国内・GMOイプシロン）", "Amazon Pay"]
+Output.payment_gateways = Input.payment_gateways.sort_by do |payment_gateway|
+  desired_order.index(payment_gateway.name) || Float::INFINITY
+end
